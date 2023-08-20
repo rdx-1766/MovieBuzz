@@ -1,0 +1,61 @@
+.Movie_page{
+    background-color:rgb(3, 6, 12);
+    background-image: url(./movie_struct_bg.jpg);
+    background-size: 100%;
+    /* background-image: url(./202978.webp); */
+} 
+
+.Poster{
+    border-radius: 0.5cm;
+    border-color: white;
+    border-style: groove;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+    height:80vh;
+}
+.Movie_Name{
+    letter-spacing: 0.05cm;
+    margin-top: 10vh;
+    font-size: 45px;
+    text-align: center;
+    color: white ;
+    text-shadow: 0em;
+    text-decoration-color: aqua;
+    font-style: oblique;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: lighter;
+}
+
+.details{   
+    margin-top: 10vh;
+    text-align: left;
+    color: aliceblue;
+    font-style: oblique;
+    font-size: 20px;
+    list-style-type: none;
+}
+.play{
+    margin-top: 10vh;
+    margin-left: 15vh;
+    align-items: center ;
+    width: 250px;
+    height: 40px;
+    background-color:#0f79af;
+    display:grid;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 0px 20px;
+}
+.play i{
+    align-items: center;
+    color:white;
+    letter-spacing: 0.015cm;
+}
+.play:hover{
+    background-color:black;
+    color:white ;
+    box-shadow: black;
+    transition: all ease 0.2s;
+}

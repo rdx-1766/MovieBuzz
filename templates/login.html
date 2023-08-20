@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    login
+{% endblock title %}
+
+{% block head %}
+<style>
+  .col-md-4{
+    margin-left: auto;
+    margin-right:auto;
+  }
+</style>
+{% endblock head %}
+
+{% block bg %}
+style="background-image: url('../static/yash.jpg'); background-size: cover; opacity= 1.0;"{% endblock bg %}
+
+{% block 
+  body %}
+  
+<div class="row mt-5">
+
+  <div class="col-md-7">
+  </div>
+
+  <div class="col-md-4 jumbotron border  rounded rounded-5 bg-light">
+    <div class="row rounded rounded-6 "> <h1 > Log In <h1> </div>
+
+    {% with messages=get_flashed_messages(with_categories=true)  %}
+    {% if messages %}
+    {% for category,message in messages %}
+    
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+      {{message}}
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </butotn>
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% endwith %}
+          
+      <div >
+          <form class="mt-5" action='/login' method="POST">
+              
+              <div class="form-group ">
+                <label  for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="email" name="email"
+                required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label  for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+              </div>
+
+              <div class="d-grid gap-2 ">
+              <button type="submit" class="btn btn-success">Login</button>
+              </div>
+            </form >
+            <br>
+             Not a user?<a href="/signup">Signup</a>
+      </div>
+</div>
+    
+    
+
+    <div class="col-md-1">
+    </div>
+
+</div>
+{% endblock body %}

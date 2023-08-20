@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}movie_db{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true)  %}
+        {% if messages %}
+        {% for category,message in messages %}
+        
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+          {{message}}
+    
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </butotn>
+        </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+    {% endwith %}
+<table class="table">
+  <thead>
+    <tr style="background-color:black; color:white ">
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Year</th>
+      <th scope="col">Director</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Production</th>
+      <th scope="col">Link</th>
+      <th scope="col">Poster</th>
+      <th scope="col">Description</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for post in query %}
+    <tr>
+      <th scope="row">{{post.movie_id}}</th>
+      <td>{{post.title}}</td>
+      <td>{{post.year}}</td>
+      <td>{{post.name}}</td>
+      <td>{{post.genre}}</td>
+      <td>{{post.production}}</td>
+      <td>{{post.link}}</td>
+      <td>{{post.poster}}</td>
+      <td>{{post.description}}</td>
+      <td><a href="/edit/{{post.movie_id}}"><button class="btn btn-dark">Edit</button>
+      </a></td>
+      <td><a href="/delete/{{post.movie_id}}"><button onclick="return confirm('Are you sure 
+        to Delete data');"class="btn btn-danger">Delete</button>
+      </a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock body %}
+
+

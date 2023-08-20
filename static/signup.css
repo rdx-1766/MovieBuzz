@@ -1,0 +1,22 @@
+.nav-brand{
+   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.active {
+    background-color:rgb(4, 169, 73);
+    font-family: sans-serif;
+    background-clip:padding-box;
+}
+
+.col-sm-6{
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.body{
+   background-size: cover;
+}
+
+.nav-link:hover{
+   background-color: rgb(4, 169, 73);
+   transition: all ease 0.2s;
+}

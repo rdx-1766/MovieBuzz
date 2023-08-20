@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    .image {
+        border-radius: 50%;
+        display:block;
+        border-color: green;
+        border-style: groove;
+      }
+
+      a{
+        color: white;
+      }
+      .table{
+        margin-top: 5vh;
+      }
+      div{
+        color:white;
+        font-size:20px;
+      }
+      td{
+        color:white;
+      }
+      .poster{
+         margin:auto;
+         margin-top:80vh;
+      }
+
+      .details{
+        font-family: 'Brush Script MT', cursive;
+        font-size:35px;
+        margin-top:0vvh;
+        margin-left:35vh;
+      }
+
+      .castname{
+        font-family:'Copperplate Gothic Light',bold;
+        font-style:bold;
+        letter-spacing: 0.05cm;
+        margin-top: 10px;
+        margin-bottom:35px;
+        font-size: 70px;
+        text-align: center;
+        text-shadow: 5em;
+        text-decoration-color: aqua;
+        
+        font-weight: lighter;
+        color:white;
+        -webkit-background-clip:text;
+     
+     }
+</style>
+{% endblock head %}
+
+{% block title %}Cast{% endblock title %}
+
+{% block bg %}
+style="background-image: url(../static/movie_struct_bg.jpg);
+background-size: 100%; background-color:black;"
+
+{% endblock bg %}
+
+{% block body %}
+    
+<div class="container">
+    <div class="row mt-5 ">
+      
+      <div class="col-md-3">
+      
+            <div  height="250px" width="250px" style="display: flex; margin: 0px 32px 0px 0px; border-radius: 250px; background: none;" class="style__LazyContainer-sc-eykeme-0 bdRZwJ">
+                <div class="poster" style="opacity: 0;">
+                    <svg width="80" height="80"><use href="/chunks/icons/common-icons-9d2f87ae.svg#icon-bms-gray"></use></svg>
+                </div>
+                <img alt="" style="border-radius: 50%; border-color: white;
+                border-style: groove; opacity: 1;" width="400px" height="400px" class="style__Image-sc-eykeme-1 dWIxSp" src="{{query.image}}">
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="details" >
+                
+                    <h1 class="castname" >{{query.name}}</h1>
+                    <div >
+                        <svg width="20" height="20" fill="#ffffff"><use href="/chunks/icons/movies-icons-ad356e8b.svg#icon-movies"></use></svg>
+                        
+                    </div>
+                
+                <table >
+                    <tr>
+                        <td >Age:</td>
+                        <td >{% if query.age==0 %}---Age Not Yet Updated--- {% else %}{{query.age}}{% endif %} </td>
+                    </tr>
+                    <tr>
+                        <td >Awards:</td>
+                        <td >{{query.awards}}</td>
+                    </tr>
+                    <tr>
+                        <td >Debut Year: </td>
+                        <td >{% if query.debut_year==0 %}---Will Be Available Soon---{% else %}{{query.debut_year}}{% endif %}</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            {% if session['account_type']=='admin' %}{% endif %}
+            
+       
+
+      
+
+    </div>
+</div>
+
+
+
+{% endblock body %}

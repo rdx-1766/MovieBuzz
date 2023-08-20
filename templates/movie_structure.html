@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie_Buzz</title>
+    <link rel="stylesheet" href="static/movie_structure.css"/>
+    <link rel="shortcut icon" href="reel.jpg"/>
+    <script src="https://kit.fontawesome.com/592db3ec0e.js" crossorigin="anonymous"></script>
+    
+    <style>
+
+        @media only screen and (max-width: 480px) {
+            .col-md-6 img {
+              width: 100%;
+              height:100%;
+            }
+
+            .rate{
+                position:relative;
+                margin-top: auto;
+                margin-left: auto;
+                margin-right:auto;
+                margin-bottom: auto;
+            }
+            .play1{
+                position:relative;
+                margin-top: auto;
+                margin-left: auto;
+                margin-right:auto;
+                margin-bottom: auto;
+            }
+
+            .rate1{
+                position:relative;
+                margin-top: auto;
+                margin-left: auto;
+                margin-right:auto;
+                margin-bottom: auto;
+            }
+          }
+
+        h3{
+            font-size: 10px;
+            font-family:Franklin Gothic Medium;
+            color:white;
+        }
+
+        label{
+            font-size:20px;
+            color: silver;
+            font-style: oblique;
+            font-family: "Source Sans Pro", "Arial", sans-serif;
+        }
+        
+        .Movie_page{
+            background-color:rgb(3, 6, 12);
+            background-image: url(../static/movie_struct_bg.jpg);
+            background-size: 100%;
+            /* background-image: url(./202978.webp); */
+        } 
+        
+        .Poster{
+            border-radius: 0.5cm;
+            border-color: white;
+            border-style: groove;
+            display:block;
+            margin-left: auto;
+            margin-right: auto;
+            width:100%;
+            height:80vh;
+        }
+
+
+        .Movie_Name{
+            letter-spacing: 0.05cm;
+            margin-top: 10px;
+            font-size: 45px;
+            text-align: center;
+            text-shadow: 0em;
+            text-decoration-color: aqua;
+            
+            font-weight: lighter;
+            background-image: linear-gradient(
+             to right,
+             #462523 0,
+                    #cb9b51 22%, 
+             #f6e27a 45%,
+             #f6f2c0 50%,
+             #f6e27a 55%,
+             #cb9b51 78%,
+             #462523 100%
+             );
+            color:transparent;
+            -webkit-background-clip:text;
+         
+         }
+
+        
+        
+        .details{   
+            margin-top: 5vh;
+            text-align: left;
+            color: aliceblue;
+            
+            font-size: 20px;
+            list-style-type: none;
+        }
+
+        .play{
+            
+            margin-top: 4vh;
+            margin-left: auto;
+            margin-right:auto;
+            margin-bottom: 20px;
+            align-items: center ;
+            width: 250px;
+            height: 40px;
+            background-color:#0f79af;
+            display:grid;
+            justify-content: center;
+            border-radius: 20px;
+            padding: 0px 20px;
+        }
+
+        .play i{
+           /* margin: 0 auto; /* Added */
+          float: none; /* Added */
+            Added */
+            align-items: center;
+            color:white;
+            letter-spacing: 0.015cm;
+        }
+        .play:hover{
+            background-color:black;
+            color:white ;
+            box-shadow: black;
+            transition: all ease 0.2s;
+        }
+
+        .play1{
+            position:relative;
+            left:75px;
+            margin-top: 4vh;
+            margin-left: auto;
+            margin-right:auto;
+            margin-bottom: 20px;
+            align-items: center ;
+            width: 250px;
+            height: 40px;
+            background-color:green;
+            display:grid;
+            justify-content: center;
+            border-radius: 20px;
+            padding: 0px 20px;
+        }
+
+        .play1 i{
+           /* margin: 0 auto; /* Added */
+          float: none; /* Added */
+            Added */
+            align-items: center;
+            color:white;
+            letter-spacing: 0.015cm;
+        }
+        .play1:hover{
+            background-color:black;
+            color:white ;
+            box-shadow: black;
+            transition: all ease 0.2s;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .rate {
+            position: relative;
+            left: 30px;
+            top: 20px;
+            margin-top: 10;
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+        .rate:not(:checked) > input {
+            position:absolute;
+            top:-9999px;
+        }
+        .rate:not(:checked) > label {
+            float:right;
+            width:1em;
+            overflow:hidden;
+            white-space:nowrap;
+            cursor:pointer;
+            font-style: normal;
+            font-size:30px;
+            color:#ccc;
+        }
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+        .rate > input:checked ~ label {
+            color: #ffc700;    
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;  
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+
+        .rate1 {
+            position:relative;
+            top:67px;
+            left:60px;
+        }
+
+    </style>
+{% endblock head %}
+{% block bg %}class="Movie_page"{% endblock bg %}
+{% block body %}
+
+    <div class="container">
+        <div class="row mt-5">
+            
+            <div class="col-md-6">
+                
+            {% if count==1 %}
+            <img src="{{query.poster}}" class="Poster" style="width:100%;height:60vh;" alt="Responsive image" data-aos="zoom-out">
+            <h3 class="rate1" style="color:white;"> Rate Now  </h3>
+            <form   class="rate"  action="/movieStruct/{{query.movie_id}}" method="POST">
+                <input type="radio" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
+                
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <button class="play1" onclick=fun();
+                 type="submit"><i class="fa-solid ">&nbsp;&nbsp;submit</i></button>
+        </form>
+        
+
+        {% else %}
+        
+        <img src="{{query.poster}}" class="Poster" style="width:100%;height:80vh;" alt="Responsive image" data-aos="zoom-out">
+           
+        {% endif %}  
+            </div>
+            
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-5">
+            <h1 class="Movie_Name" style="font-family:Stencil Std, fantasy; font-size:50px">{{query.title}}</h1>
+            
+  
+    <div class="details">
+        <h3 style="font-family:impact; font-size:40px;">{{query.genre}}&nbsp;|&nbsp;{{query.year}}
+        
+        <br>
+        <h3>Language:&nbsp{% for lang in query4 %}<label>{{lang.language}}{{ "," if not loop.last }}&nbsp</label>{% endfor %}</h3>
+        <h3>Cast:&nbsp{% for cast in query3  %}<label><a href="/cast/{{cast.id}}">{{cast.name}}</a>{{ "," if not loop.last }}&nbsp</label>{% endfor %}</h3>
+        <h3>Rating:<label>&nbsp&nbsp&nbsp&nbsp{{query5}}</label></h3>
+        <h3>Director:<label>&nbsp{{query1.name}}</label></h3>
+        <h3>Production:<label>&nbsp{{query2.name}}</label></h3>
+        <h3>Description:&nbsp <label>{{query.description}}</label></h3>
+    </div>
+        <div class="play">
+            <a href={{query.link}}><i class="fa-solid fa-play">&nbsp;&nbsp;Trailer</i> </a>
+        </div>
+    </div>
+    </div>
+
+</div>
+    {% endblock body %}

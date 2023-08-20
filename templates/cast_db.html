@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock head %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block bg %}
+
+{% endblock bg %}
+
+{% block body %}
+<table class="table">
+    <thead>
+      <tr style="background-color:black; color:white ">
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Awards</th>
+        <th scope="col">Debut Year</th>
+        <th scope="col">Img Link</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for post in query %}
+      <tr>
+        <th scope="row">{{post.id}}</th>
+        <td>{{post.name}}</td>
+        <td>{{post.age}}</td>
+        <td>{{post.awards}}</td>
+        <td>{{post.debut_year}}</td>
+        <td>{{post.image}}</td>
+        <td><a href="/edit_cast/{{post.id}}"><button class="btn btn-danger">Edit</button>
+        </a></td>
+      </tr>
+      {% endfor %}
+    </tbody> 
+  </table>
+{% endblock body %}

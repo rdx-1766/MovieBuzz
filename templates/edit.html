@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}edit{% endblock title %}
+
+{% block head %}
+
+<style>
+    #desc{
+        height: 150px;
+        width: 500px;
+        text-align: top-right;
+    }
+</style>
+
+{% endblock head %}
+
+{% block bg %}
+style="background-image: url('../static/editbg.jpg');  background-repeat = no-repeat ; background-size: cover; background-attachment = fixed;"
+{% endblock bg %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-5">
+        
+        <div class="col-md-1">
+        </div>
+    
+        
+        <div class="col-md-10  rounded rounded-5 bg-transparent">
+          
+          <div class="col-sm-6"> <h1 style="font-family:'Copperplate Gothic Light',bold;"> Update Movie Detalis <h1> </div>
+          <br>
+            {% with messages=get_flashed_messages(with_categories=true)  %}
+            {% if messages %}
+            {% for category,message in messages %}
+            
+            <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+              {{message}}
+        
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </butotn>
+            </div>
+    
+            {% endfor %}
+    
+        {% endif %}
+    
+        {% endwith %}
+        
+        <form class="form-horizontal" role="form" name=fdadd action="/edit/{{posts.movie_id}}" method="POST"> 
+            <div class="form-group">
+                <label for="MovieName" class="col-sm-3 control-label">Name</label>
+                <div class="col-sm-9">
+                    <input type="text" id="firstName" class="form-control" name="title" value="{{posts.title}}"  autofocus >
+                </div>
+            </div>
+        
+        
+            <div class="form-group" >
+                <label class="control-label col-sm-3">Genre</label>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="radio" id="femaleRadio" value="Action" {% if posts.genre=='Action' %}checked{% endif %}>Action
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="radio" id="maleRadio" value="Horror" {% if posts.genre=='Horror' %}checked{% endif %}>Horror
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="radio" id="uncknownRadio" value="Adventure" {% if posts.genre=='Adventure' %}checked{% endif %}>Adventure
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="radio" id="uncknownRadio" value="Romantic" {% if posts.genre=='Romantic' %}checked{% endif %}>Romantic
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="radio" id="uncknownRadio" value="Comedy" {% if posts.genre=='Comedy' %}checked{% endif %}>Comedy
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="radio" id="uncknownRadio" value="Thriller" {% if posts.genre=='Thriller' %}checked{% endif %}>Thriller
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /.form-group -->
+        
+            <div class="form-group">
+                <label for="Specilization" class="col-sm-3 control-label">Director</label>
+                <div class="col-sm-9">
+                    <input type="text" id="spec" name="director" value="{{posts.name}}" class="form-control" autofocus>
+        
+                </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="Specilization" class="col-sm-3 control-label">Production</label>
+              <div class="col-sm-9">
+                  <input type="text" id="spec" name="production" value="{{posts.production}}" class="form-control" autofocus>
+              </div>
+          </div>
+        
+            <div class="form-group">
+                <label for="year" class="col-sm-3 control-label">Year</label>
+                <div class="col-sm-9">
+                    <input type="number" id="year" name="year" value={{posts.year}} class="form-control" min= 1900 max= 2500 autofocus>
+        
+                </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="Specilization" class="col-sm-3 control-label">Movie Description</label>
+              <div class="col-sm-9">
+                  <textarea type="text"  id="desc" name="description"  class="form-control" autofocus>{{posts.description}}</textarea>
+              </div>
+          </div>
+        
+            <div class="form-group">
+                <label for="fee" class="col-sm-3 control-label">Link </label>
+                <div class="col-sm-9">
+                    <input type="text" id="fee" name="link" value={{posts.link}} class="form-control" autofocus>
+                </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="fee" class="col-sm-3 control-label">Poster</label>
+              <div class="col-sm-9">
+                  <input type="text" id="fee" name="poster" value={{posts.poster}} class="form-control" autofocus>
+              </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="checkbox1" class="col-sm-3 control-label">Language Available</label>
+            <div class="col-sm-9">
+                {% set lang = [] %}
+                {% for post in posts1 %}
+                {{ lang.append( post.language ) or ""}}
+                {% endfor %}   
+            <input type="checkbox" name="language" value="Kannada" {% if 'Kannada' in lang %}Checked{% endif %}>Kannada &nbsp
+            <input type="checkbox" name="language" value="English" {% if 'English' in lang %}Checked{% endif %}>English &nbsp
+            <input type="checkbox" name="language" value="Hindi" {% if 'Hindi' in lang %}Checked{% endif %}>Hindi &nbsp
+            <input type="checkbox" name="language" value="Telugu" {% if 'Telugu' in lang %}Checked{% endif %}>Telugu &nbsp
+            <input type="checkbox" name="language" value="Tamil" {% if 'Tamil' in lang %}Checked{% endif %}>Tamil &nbsp
+            <input type="checkbox" name="language" value="Malayalam" {% if 'Malayalam' in lang %}Checked{% endif %}>Malayalam &nbsp
+            <input type="checkbox" name="language" value="Marathi" {% if 'Marathi' in lang %}Checked{% endif %}>Marathi
+            
+            </div>
+            </div>
+        
+            
+            
+            
+    
+            
+        
+            
+    
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-3">
+                    <button type="submit"  onclick="send_info()" value=submit class="btn btn-primary btn-block">Update</button>
+                </div>
+            </div>
+        </form>
+        
+        
+        </div>
+      </div>
+     
+      <div class="col-md-1">
+    </div>
+       
+    </div>
+    </div>
+
+
+
+{% endblock body %}

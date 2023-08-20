@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<style>
+    input{
+        background-color:blue;
+    }
+</style>
+{% endblock head %}
+
+{% block title %} 
+
+{% endblock title%}
+
+{% block bg %}
+style="background-image: url('../static/editbg.jpg');  background-repeat = no-repeat ; background-size: cover; background-attachment = fixed;"
+{% endblock bg %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-5 ">
+        
+        <div class="col-md-4">
+        </div>
+        
+        <div class="col-md-4 jumbotron rounded rounded-5 bg-transparent">
+          
+          <div> <h1 style="font-family:'Copperplate Gothic Light',bold;">Actor Details<h1> </div>
+        
+            <form class="mt-5" action="/edit_cast/{{query.id}}" method="POST">
+                
+                <div class="form-group ">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" id="username" name="name" value="{{query.name}}"
+                    required>
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Age</label>
+                  <input type="number" class="form-control" id="age" name="age" value="{{query.age}}"
+                  required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Debut Year</label>
+                  <input type="year" class="form-control" id="exampleInputPassword1" name="debut_year" value={{query.debut_year}} required>
+                </div>
+                <div class="form-group ">
+                    <label for="exampleInputEmail1">Image Link</label>
+                    <input type="text" class="form-control" id="username" name="link" value="{{query.image}}"
+                    required>
+                  </div>
+                  <div class="form-group ">
+                    <label for="exampleInputEmail1">Awards</label>
+                    <textarea type="text" class="form-control" id="username" name="awards" >{{query.awards}}</textarea>
+                  </div>
+                <div class="d-grid gap-2 ">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form >
+              
+        </div>
+      </div>
+    
+        <div class="col-md-4">
+        </div>
+    </div>
+    </div>
+{% endblock body %}

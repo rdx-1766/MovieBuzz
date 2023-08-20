@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+  .card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+</style>
+{% endblock head %}
+
+{% block title %}lang/genre{% endblock title %}
+
+{% block bg %}style="background-color:#818589;"{% endblock bg %}style="background-color:black;"
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true)  %}
+        {% if messages %}
+        {% for category,message in messages %}
+        
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+          {{message}}
+    
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </butotn>
+        </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+    {% endwith %}
+
+
+
+{%set count= namespace(value=0) %}
+
+{% for post in query %}
+
+<div class="container">
+<div class = "row ">
+
+{% for i in range(0,4)%}
+  {%set x = i+count.value%}
+  {%if count.value+i < query.count()%}
+
+  <div class = "col sm-2">
+<div class="card" style="width: 18rem;background-color:black; color:white; height: 500px" data-aos="zoom-in">
+  <img src="{{query[x].poster}} " width="100" height="250" class="card-img-top" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title" style="font-family:Stencil Std, fantasy; letter-spacing:0.08cm;">{{query[x].title}}</h5>
+    <p class="card-text">{{query[x].description}}</p>
+    <a href="/movieStruct/{{query[x].movie_id}}" class="btn btn-success">View Now</a>
+  </div>
+</div>
+</div>
+
+
+{% endif %}
+{% endfor %}
+
+
+{% set count.value = count.value+4%}
+{% if count.value < query.count()%}
+<div>
+  <br>
+</div>
+{% endif %}
+
+{% endfor %}
+
+
+{% endblock body %}
+
+

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock head %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block bg %}
+
+{% endblock bg %}
+
+{% block body %}
+<table class="table">
+    <thead>
+      <tr style="background-color:black; color:white ">
+        <th scope="col">Name of Production House</th>
+        <th scope="col">Owner Name</th>
+        <th scope="col">Img Link</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for post in query %}
+      <tr>
+        <td>{{post.name}}</td>
+        <td>{{post.owner}}</td>
+        <td>{{post.image}}</td>
+        <td><a href="/edit_production/{{post.name}}"><button class="btn btn-danger">Edit</button>
+        </a></td>
+      </tr>
+      {% endfor %}
+    </tbody> 
+  </table>
+{% endblock body %}
